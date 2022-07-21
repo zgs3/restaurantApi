@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class DishController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class DishController extends Controller
      */
     public function index()
     {
-        return Dish::all();
+        return Dish::with('restaurant')->get();
     }
 
     /**
@@ -50,7 +56,11 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        return Dish::find($dish);
+        // $dish = Dish::with('restaurant')->find($dish)->last();
+        $dish = Dish::with('restaurant')->find($dish)->last();
+
+        // return $dish->toArray();
+        return $dish;
     }
 
     /**

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class RatingController extends Controller
      */
     public function index()
     {
-        return Rating::all();
+        // return Rating::all();
+        return Rating::with('dish')->get();
     }
 
     /**
@@ -50,7 +57,8 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
-        return Rating::find($rating);
+        // return Rating::find($rating);
+        return $rating;
     }
 
     /**
