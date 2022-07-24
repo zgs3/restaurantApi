@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('image_link');
             $table->unsignedBigInteger('restaurant_id');
             $table->timestamps();
-            $table->foreign('restaurant_id')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
         });
     }
 

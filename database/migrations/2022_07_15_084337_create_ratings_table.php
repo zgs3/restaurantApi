@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->unsignedBigInteger('dish_id');
             $table->timestamps();
-            $table->foreign('dish_id')->references('id')->on('dishes');
+            $table->foreign('dish_id')->references('id')->on('dishes')->onDelete('cascade');
         });
     }
 
